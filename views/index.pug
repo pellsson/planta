@@ -6,7 +6,7 @@ html
 		each cam in cameras
 			h3= cam.name
 			div
-				for each vid in cam.videos
+				each vid in cam.videos
 					a(href=vid.path) vid.name
 			each img in cam.images
 				a(href=img)
