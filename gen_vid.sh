@@ -29,7 +29,8 @@ framedir=$(mktemp -d)
 echo "Building input list in $framedir..."
 frame=1
 
-for i in `seq 1 $(($duration * $fps))`;
+i=$(($duration * $fps))
+while [ $i -ne 0 ];
 do
 	fn=$(date '+%Y-%m-%d_%H:%M.jpg' -d "$first -$(($i * $increment)) minutes")
 	if [ -f $fn ]; then
@@ -38,7 +39,8 @@ do
 	else
 		echo "Missing image $fn!"
 	fi
+	i=$((i - 1))
 done
 
-avconv -r $fps -i $framedir/%08d.jpg -c:v libx264 -profile:v high -pix_fmt yuv420p -crf 20 -y $out
+ffmpeg -r $fps -i $framedir/%08d.jpg -c:v libx264 -profile:v high -pix_fmt yuv420p -crf 20 -y $out
 rm -fr $framedir
