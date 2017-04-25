@@ -1,0 +1,9 @@
+html
+	head
+		title Plantaor
+	body
+		h1 Wasabi
+		each cam in cameras
+			h3= cam.name
+			each img in cam.images
+				img(src=img alt=img width=128 style="padding-right:2px")
