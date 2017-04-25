@@ -40,5 +40,5 @@ do
 	fi
 done
 
-ffmpeg -r $fps -i $framedir/%08d.jpg -c:v libx264 -profile:v high -pix_fmt yuv420p -crf 20 -y $out
+avconv -r $fps -i $framedir/%08d.jpg -c:v libx264 -profile:v high -pix_fmt yuv420p -crf 20 -y $out
 rm -fr $framedir
