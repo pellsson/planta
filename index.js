@@ -24,7 +24,7 @@ app.get('/', function (req, res) {
 		cd = { images: [], name: config[cam] || cam }
 		for(var i = 0; i < count; ++i) {
 			now = new Date()
-			file = df(new Date(now.getTime() - (i * increment - (120 * 1000))), "yyyy-mm-dd_HH:MM.jpg")
+			file = df(new Date(now.getTime() - (i * increment) - 120 * 1000), "yyyy-mm-dd_HH:MM.jpg")
 			cd['images'].push(cam + '/' + file);
 		}
 		data.push(cd)
