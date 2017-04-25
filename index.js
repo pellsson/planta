@@ -20,9 +20,9 @@ app.get('/', function (req, res) {
 	cams.map(function(cam) {
 		cd = { images: [], name: config[cam] || cam }
 		for(var i = 0; i < 14; ++i) {
-			delta = ((i * 3600 * 24) - 60) * 1000
+			delta = (i * 3600 * 24) * 1000
 			now = new Date()
-			file = df(new Date(now.getTime() - delta), "yyyy-mm-dd_HH:MM.jpg")
+			file = df(new Date(now.getTime() - delta - 120), "yyyy-mm-dd_HH:MM.jpg")
 			cd['images'].push(cam + '/' + file);
 		}
 		data.push(cd)
