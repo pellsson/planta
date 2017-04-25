@@ -11,9 +11,9 @@ echo "FPS:      $fps"
 echo "Outfile:  $out"
 
 first=$(basename $(ls -t $cam/*.jpg | head -1))
-first=${first//:/} # remove :
-first=${first//_/ } # remove _
-first=${first//.jpg/} # remove .jpg
+first=$(echo $first | sed 's/://') # remove :
+first=$(echo $first | sed 's/_/ /') # remove _
+first=$(echo $first | sed 's/.jpg//') # remove .jpg
 
 increment=$(($span / ($duration*$fps)))
 
