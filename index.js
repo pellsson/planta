@@ -17,12 +17,14 @@ app.get('/', function (req, res) {
 	var cams = fs.readdirSync('./images')
 	var data = []
 
+	var count = req.query.count || 14
+	var increment = (req.query.inc ? (req.query.inc * 60) : (3600 * 24)) * 1000
+
 	cams.map(function(cam) {
 		cd = { images: [], name: config[cam] || cam }
-		for(var i = 0; i < 14; ++i) {
-			delta = (i * 3600 * 24) * 1000
+		for(var i = 0; i < count; ++i) {
 			now = new Date()
-			file = df(new Date(now.getTime() - delta - 120), "yyyy-mm-dd_HH:MM.jpg")
+			file = df(new Date(now.getTime() - (i * increment - (120 * 1000))), "yyyy-mm-dd_HH:MM.jpg")
 			cd['images'].push(cam + '/' + file);
 		}
 		data.push(cd)
