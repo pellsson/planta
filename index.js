@@ -21,7 +21,9 @@ app.get('/', function (req, res) {
 	var increment = (req.query.inc ? (req.query.inc * 60) : (3600 * 24)) * 1000
 
 	cams.map(function(cam) {
-		cd = { images: [], name: config[cam] || cam, videos: [ { title: '24hrs', path: cam + '/' + '24hrs.mp4' } ] }
+		cd = { images: [], name: config[cam] || cam, videos: [ 
+			{ title: '24hrs', path: cam + '/' + '24hrs.mp4' },
+			{ title: 'Week', path: cam + '/' + 'week.mp4' }] }
 		for(var i = 0; i < count; ++i) {
 			now = new Date()
 			file = df(new Date(now.getTime() - (i * increment) - 120 * 1000), "yyyy-mm-dd_HH:MM.jpg")
