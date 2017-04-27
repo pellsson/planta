@@ -16,7 +16,7 @@ first=$(echo $first | sed 's/://') # remove :
 first=$(echo $first | sed 's/_/ /') # remove _
 first=$(echo $first | sed 's/.jpg//') # remove .jpg
 
-increment=$((($span * 1000) / ($duration * $fps)))
+increment=$((($span * 60) / ($duration * $fps)))
 
 if [ $increment -eq 0 ];
 then
