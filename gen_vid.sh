@@ -16,7 +16,7 @@ first=$(echo $first | sed 's/://') # remove :
 first=$(echo $first | sed 's/_/ /') # remove _
 first=$(echo $first | sed 's/.jpg//') # remove .jpg
 
-increment=$(($span / ($duration*$fps)))
+increment=$((($span * 1000) / ($duration * $fps * 1000)))
 
 if [ $increment -eq 0 ];
 then
@@ -27,13 +27,13 @@ cd $cam
 
 framedir=$(mktemp -d)
 
-echo "Building input list in $framedir..."
+echo "Building input list in $framedir (increment: $increment sec)..."
 frame=1
 
 i=$(($duration * $fps))
 while [ $i -ne 0 ];
 do
-	fn=$(date '+%Y-%m-%d_%H:%M.jpg' -d "$first -$(($i * $increment)) minutes")
+	fn=$(date '+%Y-%m-%d_%H:%M.jpg' -d "$first -$(($i * $increment)) seconds")
 	if [ -s $fn ]; then
 		ln -s $(pwd)/$fn $framedir/$(printf %08d $frame).jpg
 		frame=$(($frame + 1))
