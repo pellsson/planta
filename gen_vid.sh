@@ -1,3 +1,4 @@
+#!/bin/bash
 cam=${1?First parameter must be set to cam folder}
 span=${2:-$((24*60))} # time span, in minutes
 duration=${3:-60}
