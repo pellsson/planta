@@ -43,7 +43,9 @@ do
 done
 
 avconv -r $fps -i $framedir/%08d.jpg -c:v libx264 -profile:v high -pix_fmt yuv420p -crf 20 -y tmp.$out
-rm $out
+if [ -f $out ]; then
+	rm $out
+fi
 mv tmp.$out $out
 rm -fr $framedir
 
