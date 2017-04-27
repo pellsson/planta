@@ -34,7 +34,7 @@ i=$(($duration * $fps))
 while [ $i -ne 0 ];
 do
 	fn=$(date '+%Y-%m-%d_%H:%M.jpg' -d "$first -$(($i * $increment)) minutes")
-	if [ -f $fn ]; then
+	if [ -s $fn ]; then
 		ln -s $(pwd)/$fn $framedir/$(printf %08d $frame).jpg
 		frame=$(($frame + 1))
 	else
