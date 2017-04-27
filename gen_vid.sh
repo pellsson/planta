@@ -42,6 +42,8 @@ do
 	i=$((i - 1))
 done
 
-avconv -r $fps -i $framedir/%08d.jpg -c:v libx264 -profile:v high -pix_fmt yuv420p -crf 20 -y $out
+avconv -r $fps -i $framedir/%08d.jpg -c:v libx264 -profile:v high -pix_fmt yuv420p -crf 20 -y $out.tmp
+rm $out
+mv $out.tmp $out
 rm -fr $framedir
 
