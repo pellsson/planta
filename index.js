@@ -17,6 +17,11 @@ app.get('/', function (req, res) {
 	var cams = fs.readdirSync('./images')
 	var data = []
 
+	if(process.env.pass != req.query.pass)
+	{
+		return res.send('no auth')
+	}
+
 	var count = req.query.count || 14
 	var increment = (req.query.inc ? (req.query.inc * 60) : (3600 * 24)) * 1000
 
