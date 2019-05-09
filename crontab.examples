@@ -1,7 +1,9 @@
 # Once a minute take snapshot
 * * * * * bash /home/pellsson/code/planta/snap.sh
-# At midnight, create 24hr video
-0 0 * * * bash /home/pellsson/code/planta/gen_all_24.sh
-# On sunday at 4 AM create week video
-0 4 * * 0 bash /home/pellsson/code/planta/gen_all_week.sh
+
+# 06:00 to 23:00 every day, create new 24hr view
+0 6-23 * * * bash /home/pellsson/code/planta/gen_all_24.sh
+
+# On sunday each week at 1 AM, create week video
+0 1 * * 0 bash /home/pellsson/code/planta/gen_all_week.sh
 
